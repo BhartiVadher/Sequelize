@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players Data</title>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'get',
+                'ajax': {
+                    url: '/pagination'
+                },
+                // dom: '<"top"i>rt<"bottom"flp><"clear">',
+                lengthMenu: [[5, 10, 20,-1],[5,10,20,"ALL"]],
+                columns: [
+                    { data: 'firstName' },
+                    { data: 'lastName' },
+                    { data: 'email' },
+                    { data: 'address' },
+                    { data: 'Sport.game' }
+                ]
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+    <table id="myTable" class="display">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Sport</th>
+            </tr>
+        </thead>    
+        <tbody></tbody>
+    </table>
+</body>
+
+</html>
