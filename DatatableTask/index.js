@@ -4,8 +4,8 @@ const { Model } = require("sequelize");
 
 const studentData = require("./routes/indexRoutes");
 const pagination = require("./routes/indexRoutes");
-
 app.set("view-engine", "ejs");
+
 
 app.use("/", studentData);
 app.use("/", pagination);

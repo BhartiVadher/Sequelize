@@ -14,7 +14,6 @@ const studentData = async (req, res) => {
   res.render("playersData.ejs");
 };
 
-
 const pagination = async (req, res) => {
   try {
     var draw = req.query.draw;
