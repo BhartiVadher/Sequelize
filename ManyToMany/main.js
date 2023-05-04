@@ -1,42 +1,17 @@
 const express = require("express");
-const bodyParser = require('body-parser')
 const app = express();
-const mysql = require("mysql2");
-
-const { Sequelize } = require("sequelize")
 const { Model } = require("sequelize");
-const db = require('./models')
-const movie = db.Movie;
-const actor = db.Actor;
-const ActorMovie = db.ActorMovie;
 
+const insertData = require("./routes/actorRoutes");
+const selectData = require("./routes/actorRoutes");
 
-app.post("/film", async (req, res) => {
+app.set("view-engine", "ejs");
 
-    var insertdata = await actor.create({
-        actorName: "Deepika",
-        Movies: [{
-            movieName: "Pathan",
-        }]
-        }, {
-        include: [db.Movie]
-        });
+app.use("/", insertData);
+app.use("/", selectData);
 
-    res.json(insertdata);
-})
+const port = 3011;
 
-app.get("/movies", async (req, res) => {
-    var data = await movie.findAll({
-        attributes: ['movieName', 'id'],
-        include: [{
-            model: actor,
-            attributes: ['actorName']
-        }]
-    })
-    res.json(data);
-})
-
-
-app.listen(3011, () => {
-    console.log("App port:http://localhost:3011")
-})
+app.listen(port, (req, res) => {
+    console.log("Successfully Connected");
+});

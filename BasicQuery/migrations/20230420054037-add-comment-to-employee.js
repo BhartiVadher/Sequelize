@@ -6,6 +6,7 @@ module.exports = {
     await queryInterface.addColumn( 'Employees', 'comment', Sequelize.STRING );
   },
 
+  
   async down (queryInterface, Sequelize) {
     await queryInterface.removeColumn( 'Employees', 'comment' );
   }
